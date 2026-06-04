@@ -1,0 +1,295 @@
+(PyTorch-2.7.1) [ma-user yolov8]$python train_yolo_npu.py
+/home/ma-user/anaconda3/envs/PyTorch-2.7.1/lib/python3.12/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The /usr/local/Ascend/cann-8.5.2 owner does not match the current owner.
+  warnings.warn(f"Warning: The {path} owner does not match the current owner.")
+/home/ma-user/anaconda3/envs/PyTorch-2.7.1/lib/python3.12/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The /usr/local/Ascend/cann-8.5.2/aarch64-linux/ascend_toolkit_install.info owner does not match the current owner.
+  warnings.warn(f"Warning: The {path} owner does not match the current owner.")
+/home/ma-user/anaconda3/envs/PyTorch-2.7.1/lib/python3.12/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The /usr/local/Ascend/cann-8.5.2 owner does not match the current owner.
+  warnings.warn(f"Warning: The {path} owner does not match the current owner.")
+/home/ma-user/anaconda3/envs/PyTorch-2.7.1/lib/python3.12/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The /usr/local/Ascend/cann-8.5.2/aarch64-linux/ascend_toolkit_install.info owner does not match the current owner.
+  warnings.warn(f"Warning: The {path} owner does not match the current owner.")
+PyTorch: 2.7.1+cpu
+NPU available: True
+NPU device: Ascend910B4
+Ultralytics 8.4.60 🚀 Python-3.12.0 torch-2.7.1+cpu NPU:0 (Ascend910B4)
+
+engine/trainer: agnostic_nms=False, amp=False, angle=1.0, augment=False, auto_augment=randaugment, batch=8, bgr=0.0, box=7.5, cache=False, cfg=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco128/coco128.yaml, degrees=0.0, deterministic=True, device=npu:0, dfl=1.5, dnn=False, dropout=0.0, dynamic=False, embed=None, end2end=None, epochs=10, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, half=False, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=320, int8=False, iou=0.7, keras=False, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolov8n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train, nbs=64, nms=False, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=yolov8_npu, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=/home/ma-user/work/yolov8/runs/detect/yolov8_npu/train, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=botsort.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=4, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    897664  ultralytics.nn.modules.head.Detect           [80, 16, None, [64, 128, 256]]
+/home/ma-user/anaconda3/envs/PyTorch-2.7.1/lib/python3.12/site-packages/torch_npu/utils/storage.py:89: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  if self.device.type != 'cpu':
+Model summary: 130 layers, 3,157,200 parameters, 3,157,184 gradients, 8.9 GFLOPs
+
+Transferred 355/355 items from pretrained weights
+Freezing layer 'model.22.dfl.conv.weight'
+train: Fast image access ✅ (ping: 0.2±0.3 ms, read: 68.5±22.1 MB/s, size: 46.0 KB)
+train: Scanning /home/ma-user/work/yolov8/coco128/labels/train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 6.3Mit/s 0.0s
+albumentations: ImageCompression.__init__() got an unexpected keyword argument 'quality_range'
+val: Fast image access ✅ (ping: 0.0±0.0 ms, read: 71.0±24.9 MB/s, size: 56.4 KB)
+val: Scanning /home/ma-user/work/yolov8/coco128/labels/train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 3.8Mit/s 0.0s
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: AdamW(lr=0.000119, momentum=0.9) with parameter groups 57 weight(decay=0.0), 64 weight(decay=0.0005), 63 bias(decay=0.0)
+Plotting labels to /home/ma-user/work/yolov8/runs/detect/yolov8_npu/train/labels.jpg... 
+Image sizes 320 train, 320 val
+Using 4 dataloader workers
+Logging results to /home/ma-user/work/yolov8/runs/detect/yolov8_npu/train
+Starting training for 10 epochs...
+Closing dataloader mosaic
+albumentations: ImageCompression.__init__() got an unexpected keyword argument 'quality_range'
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+/usr/local/Ascend/cann-8.5.2/python/site-packages/tbe/dsl/classifier/transdata/transdata_classifier.py:222: SyntaxWarning: invalid escape sequence '\B'
+  """
+/usr/local/Ascend/cann-8.5.2/python/site-packages/tbe/dsl/unify_schedule/vector/transdata/common/graph/transdata_graph_info.py:143: SyntaxWarning: invalid escape sequence '\c'
+  """
+/usr/local/Ascend/cann-8.5.2/python/site-packages/tbe/dsl/unify_schedule/vector/transdata/common/graph/transdata_graph_info.py:170: SyntaxWarning: invalid escape sequence '\c'
+  """
+/usr/local/Ascend/cann-8.5.2/python/site-packages/asc_op_compile_base/asc_op_compiler/ascendc_compile_gen_code.py:161: SyntaxWarning: invalid escape sequence '\w'
+  match = re.search(f'{option}=(\w+)', ' '.join(compile_options))
+/usr/local/Ascend/cann-8.5.2/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/dynamic/gelu_grad_v2.py:96: SyntaxWarning: invalid escape sequence '\h'
+  """
+/usr/local/Ascend/cann-8.5.2/opp/built-in/op_impl/ai_core/tbe/impl/ops_legacy/dynamic/gelu_grad_v2.py:156: SyntaxWarning: invalid escape sequence '\h'
+  """
+       1/10         0G      1.344      1.868      1.207          8        320: 100% ━━━━━━━━━━━━ 16/16 2.2s/it 34.8s
+[W604 21:04:11.422043894 compiler_depend.ts:250] Warning: CAUTION: The operator 'torchvision::nms' is not currently supported on the NPU backend and will fall back to run on the CPU. This may have performance implications. (function npu_cpu_fallback)
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 6.5it/s 1.2s
+                   all        128        929      0.734      0.456      0.525      0.388
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/10         0G      1.316      1.792      1.197          8        320: 100% ━━━━━━━━━━━━ 16/16 2.5it/s 6.4s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.8it/s 1.0s
+                   all        128        929      0.758      0.455      0.534      0.391
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/10         0G      1.234      1.587      1.136          8        320: 100% ━━━━━━━━━━━━ 16/16 2.2it/s 7.3s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.5it/s 1.1s
+                   all        128        929      0.734      0.475      0.543      0.396
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/10         0G      1.249      1.637      1.174          8        320: 100% ━━━━━━━━━━━━ 16/16 1.7it/s 9.3s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.3it/s 1.1s
+                   all        128        929      0.706      0.487      0.553      0.401
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/10         0G      1.237      1.488      1.153          8        320: 100% ━━━━━━━━━━━━ 16/16 1.9it/s 8.6s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.3it/s 1.1s
+                   all        128        929      0.756      0.484      0.569      0.412
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/10         0G      1.262      1.372      1.146          8        320: 100% ━━━━━━━━━━━━ 16/16 1.7it/s 9.4s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.0it/s 1.1s
+                   all        128        929      0.762      0.478      0.566      0.412
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/10         0G      1.245      1.438      1.153          8        320: 100% ━━━━━━━━━━━━ 16/16 1.8it/s 8.8s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 6.7it/s 1.2s
+                   all        128        929      0.751      0.483      0.569      0.417
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/10         0G       1.25      1.458      1.147          8        320: 100% ━━━━━━━━━━━━ 16/16 2.1it/s 7.6s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.5it/s 1.1s
+                   all        128        929      0.762      0.485      0.582      0.427
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/10         0G      1.288      1.329      1.151          8        320: 100% ━━━━━━━━━━━━ 16/16 1.8it/s 8.9s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.4it/s 1.1s
+                   all        128        929      0.682      0.535      0.589      0.431
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/10         0G      1.239      1.294      1.154          8        320: 100% ━━━━━━━━━━━━ 16/16 1.9it/s 8.5s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 7.2it/s 1.1s
+                   all        128        929       0.68      0.543       0.59      0.435
+
+10 epochs completed in 0.036 hours.
+Warning: The current version of the file storing weights is old, and it is relanded due to internal bug of torch and compatibility issue. We will deprecate the loading support for this type of file in the future, please use newer torch to re-store the weight file.
+Optimizer stripped from /home/ma-user/work/yolov8/runs/detect/yolov8_npu/train/weights/last.pt, 6.5MB
+Optimizer stripped from /home/ma-user/work/yolov8/runs/detect/yolov8_npu/train/weights/best.pt, 6.5MB
+
+Validating /home/ma-user/work/yolov8/runs/detect/yolov8_npu/train/weights/best.pt...
+Ultralytics 8.4.60 🚀 Python-3.12.0 torch-2.7.1+cpu NPU:0 (Ascend910B4)
+
+Model summary (fused): 73 layers, 3,151,904 parameters, 0 gradients, 8.7 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 4.2it/s 1.9s
+                   all        128        929      0.678      0.543      0.591      0.436
+                person         61        254      0.815      0.516      0.627       0.42
+               bicycle          3          6      0.489      0.167      0.167       0.15
+                   car         12         46      0.557      0.087      0.134     0.0845
+            motorcycle          4          5      0.451        0.8      0.846      0.671
+              airplane          5          6      0.748      0.833      0.883      0.763
+                   bus          5          7      0.879      0.714      0.715      0.651
+                 train          3          3      0.758          1      0.995      0.912
+                 truck          5         12      0.948       0.25      0.405      0.235
+                  boat          2          6      0.517        0.5      0.488      0.359
+         traffic light          4         14      0.282      0.143      0.145      0.124
+             stop sign          2          2      0.815          1      0.995      0.795
+                 bench          5          9      0.503      0.226       0.36      0.189
+                  bird          2         16      0.817        0.5      0.684      0.399
+                   cat          4          4      0.803          1      0.995      0.833
+                   dog          9          9      0.716      0.562      0.832      0.658
+                 horse          1          2      0.739          1      0.995      0.622
+              elephant          4         17       0.69      0.882      0.873      0.649
+                  bear          1          1      0.321          1      0.995      0.995
+                 zebra          2          4      0.748          1      0.995      0.964
+               giraffe          4          9      0.917      0.889      0.897      0.735
+              backpack          4          6          1      0.425      0.499      0.178
+              umbrella          4         18      0.634      0.778      0.764      0.438
+               handbag          9         19      0.293     0.0526     0.0568     0.0334
+                   tie          6          7      0.782      0.429      0.548      0.414
+              suitcase          2          4      0.382          1      0.945      0.555
+               frisbee          5          5      0.813        0.6      0.595      0.555
+                  skis          1          1          1          0      0.497     0.0588
+             snowboard          2          7      0.253      0.714      0.757      0.483
+           sports ball          6          6          1          0    0.00917    0.00507
+                  kite          2         10          0          0     0.0333     0.0131
+          baseball bat          4          4          1          0      0.013     0.0013
+        baseball glove          4          7      0.655      0.143      0.201      0.179
+            skateboard          3          5          1      0.535      0.595      0.376
+         tennis racket          5          7      0.605      0.286      0.285      0.185
+                bottle          6         18      0.686      0.222      0.307      0.185
+            wine glass          5         16      0.752      0.125      0.223      0.153
+                   cup         10         36      0.814      0.278      0.308       0.18
+                  fork          6          6      0.623      0.167      0.208      0.186
+                 knife          7         16      0.247      0.375      0.356      0.164
+                 spoon          5         22          1       0.11      0.221      0.088
+                  bowl          9         28       0.62      0.679      0.701      0.516
+                banana          1          1      0.742          1      0.995      0.796
+              sandwich          2          2      0.667          1      0.995      0.995
+                orange          1          4      0.984       0.75      0.888      0.501
+              broccoli          4         11      0.576      0.182      0.192      0.187
+                carrot          3         24      0.631      0.417      0.476      0.313
+               hot dog          1          2       0.53          1      0.995      0.995
+                 pizza          5          5      0.558          1      0.938      0.846
+                 donut          2         14      0.603          1      0.986       0.82
+                  cake          4          4      0.799      0.997      0.945      0.777
+                 chair          9         35      0.476      0.457      0.434      0.219
+                 couch          5          6      0.642      0.606      0.709      0.486
+          potted plant          9         14      0.629      0.357      0.409       0.27
+                   bed          3          3          1      0.953      0.995      0.696
+          dining table         10         13      0.705      0.615      0.659       0.51
+                toilet          2          2      0.335      0.504      0.745       0.62
+                    tv          2          2      0.706          1      0.995      0.795
+                laptop          2          3          1      0.567      0.764      0.424
+                 mouse          2          2          1          0      0.165     0.0363
+                remote          5          8      0.576      0.375       0.46      0.327
+            cell phone          5          8          1          0     0.0174    0.00392
+             microwave          3          3      0.631          1      0.995      0.504
+                  oven          5          5      0.296        0.4      0.421      0.327
+                  sink          4          6      0.652      0.333      0.283      0.226
+          refrigerator          5          5      0.797      0.788      0.786       0.56
+                  book          6         29      0.318     0.0345      0.172     0.0701
+                 clock          8          9      0.817      0.889      0.885      0.609
+                  vase          2          2      0.773          1      0.995      0.895
+              scissors          1          1          1          0          0          0
+            teddy bear          6         21      0.596      0.762       0.77      0.496
+            toothbrush          2          5      0.457        0.6      0.727      0.488
+Speed: 0.2ms preprocess, 0.6ms inference, 0.0ms loss, 5.7ms postprocess per image
+Results saved to /home/ma-user/work/yolov8/runs/detect/yolov8_npu/train
+Ultralytics 8.4.60 🚀 Python-3.12.0 torch-2.7.1+cpu CPU (aarch64)
+Model summary (fused): 73 layers, 3,151,904 parameters, 0 gradients, 8.7 GFLOPs
+val: Fast image access ✅ (ping: 0.0±0.0 ms, read: 600.8±254.7 MB/s, size: 53.4 KB)
+val: Scanning /home/ma-user/work/yolov8/coco128/labels/train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 23.3Mit/s 0.0s
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 8/8 1.6s/it 13.2s
+                   all        128        929      0.679      0.543       0.59      0.435
+                person         61        254      0.819      0.516      0.627       0.42
+               bicycle          3          6      0.491      0.167      0.167       0.15
+                   car         12         46      0.558      0.087      0.134     0.0845
+            motorcycle          4          5      0.453        0.8      0.846      0.671
+              airplane          5          6      0.748      0.833      0.883      0.763
+                   bus          5          7      0.879      0.714      0.715      0.651
+                 train          3          3      0.758          1      0.995      0.912
+                 truck          5         12      0.958       0.25      0.405      0.235
+                  boat          2          6      0.523        0.5      0.488      0.354
+         traffic light          4         14      0.282      0.143      0.145      0.124
+             stop sign          2          2      0.816          1      0.995      0.795
+                 bench          5          9      0.502      0.225       0.36      0.189
+                  bird          2         16      0.817        0.5      0.684      0.399
+                   cat          4          4      0.803          1      0.995      0.833
+                   dog          9          9      0.717      0.563      0.832      0.658
+                 horse          1          2       0.74          1      0.995      0.622
+              elephant          4         17       0.69      0.882      0.873      0.658
+                  bear          1          1      0.321          1      0.995      0.995
+                 zebra          2          4      0.749          1      0.995      0.964
+               giraffe          4          9      0.918      0.889      0.897      0.735
+              backpack          4          6          1      0.424      0.499      0.178
+              umbrella          4         18      0.634      0.778      0.766      0.438
+               handbag          9         19      0.297     0.0526     0.0568     0.0334
+                   tie          6          7      0.783      0.429      0.548      0.414
+              suitcase          2          4      0.382          1      0.945      0.555
+               frisbee          5          5      0.813        0.6      0.595      0.555
+                  skis          1          1          1          0      0.497     0.0588
+             snowboard          2          7      0.253      0.714      0.757      0.483
+           sports ball          6          6          1          0    0.00917    0.00507
+                  kite          2         10          0          0     0.0332     0.0131
+          baseball bat          4          4          1          0      0.013     0.0013
+        baseball glove          4          7      0.655      0.143      0.201      0.179
+            skateboard          3          5          1      0.534      0.595      0.376
+         tennis racket          5          7      0.606      0.286      0.285      0.185
+                bottle          6         18      0.686      0.222      0.307      0.185
+            wine glass          5         16      0.753      0.125      0.223      0.153
+                   cup         10         36      0.816      0.278      0.308       0.18
+                  fork          6          6      0.623      0.167      0.208      0.186
+                 knife          7         16      0.247      0.375      0.357      0.164
+                 spoon          5         22          1      0.109      0.221     0.0883
+                  bowl          9         28      0.621      0.679      0.701      0.516
+                banana          1          1      0.746          1      0.995      0.796
+              sandwich          2          2      0.668          1      0.995      0.995
+                orange          1          4      0.988       0.75      0.888      0.501
+              broccoli          4         11      0.577      0.182      0.192      0.187
+                carrot          3         24      0.631      0.417      0.479      0.315
+               hot dog          1          2       0.53          1      0.995      0.995
+                 pizza          5          5      0.558          1      0.938      0.846
+                 donut          2         14      0.604          1      0.986       0.82
+                  cake          4          4      0.799      0.997      0.945      0.777
+                 chair          9         35      0.477      0.457      0.434      0.219
+                 couch          5          6      0.642      0.604      0.709      0.486
+          potted plant          9         14      0.631      0.357      0.409       0.27
+                   bed          3          3          1      0.953      0.995      0.661
+          dining table         10         13      0.705      0.615      0.659       0.51
+                toilet          2          2      0.334      0.502      0.745       0.62
+                    tv          2          2      0.706          1      0.995      0.795
+                laptop          2          3          1      0.567      0.764      0.424
+                 mouse          2          2          1          0      0.165     0.0363
+                remote          5          8      0.583      0.375       0.46      0.327
+            cell phone          5          8          1          0     0.0174    0.00392
+             microwave          3          3      0.632          1      0.995      0.504
+                  oven          5          5      0.296        0.4      0.354      0.294
+                  sink          4          6      0.655      0.333      0.283      0.226
+          refrigerator          5          5      0.797      0.788      0.786       0.56
+                  book          6         29      0.321     0.0345      0.181      0.071
+                 clock          8          9      0.818      0.889      0.885      0.609
+                  vase          2          2      0.774          1      0.995      0.895
+              scissors          1          1          1          0          0          0
+            teddy bear          6         21      0.597      0.762       0.77      0.495
+            toothbrush          2          5      0.457        0.6      0.727      0.488
+Speed: 0.3ms preprocess, 88.0ms inference, 0.0ms loss, 2.0ms postprocess per image
+Results saved to /home/ma-user/work/yolov8/runs/detect/val
+
+mAP@50:    0.590
+mAP@50-95: 0.435
+
+训练完成！输出在 runs/detect/yolov8_npu/train/
+  权重:     weights/best.pt
+  训练曲线: results.png
+(PyTorch-2.7.1) [ma-user yolov8]$
