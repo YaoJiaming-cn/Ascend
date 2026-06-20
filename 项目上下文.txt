@@ -1,0 +1,74 @@
+============================================================
+项目上下文 — 昇腾AI学习 + 视觉项目（供Claude重新加载记忆）
+============================================================
+
+【项目目标】
+学习昇腾（Ascend）架构，完成一个计算机视觉小项目，并撰写学习报告。
+用户有 PyTorch 深度学习基础，无 Ascend 硬件。
+
+【快速学习路线（1-2天）】
+1. 理解昇腾全栈架构（达芬奇架构 → CANN → torch_npu → MindSpore） ✓
+2. CANN-Learning-Hub 在线环境跑通 Hello World ✓
+3. ResNet-50 训练实战（CIFAR-10，NPU vs CPU 对比） ✓ 已完成
+4. YOLOv8 项目 ← 下一步
+
+【当前进度：第3步完成，即将进入第4步】
+============================================================
+ResNet-50 训练 — 最终结果（from scratch, 15 epochs）：
+  - 训练准确率: 16.8% → 95.6%（清晰的爬坡曲线）
+  - 验证准确率: 23.8% → 84.3%（最佳）
+  - 总训练时间: 43.3 分钟（2599s）
+  - NPU vs CPU 加速: 127.6x（CPU batch 53.5s vs NPU batch 0.4s）
+  - 平均 epoch 耗时: ~173s/epoch
+  - 图表: training_curves.png（loss + acc + epoch time 三图）
+
+关键踩坑记录（对写报告有参考价值）：
+  - AtomGit 免费环境 Bus error → 换华为云 ModelArts 付费实例解决
+  - CIFAR-10 从 cs.toronto.edu 下载极慢 → VPN加拿大节点解决 → 上传云端
+  - CANN SyntaxWarning 刷屏 → sys.warnoptions.append('ignore') 解决
+  - pretrained=True 导致 Epoch1 即 98% 无学习曲线 → 改 from scratch + lr=0.05
+  - num_workers=2 在免费容器报 shared memory 不足 → num_workers=4 在付费实例正常
+  - DataLoader workers 需设置 torch.multiprocessing.set_sharing_strategy('file_system')
+
+【当前环境】
+  - 平台: 华为云 ModelArts Notebook（西南-贵阳）
+  - 实例: notebook-ascendlearn, 1*ascend-snt9b1, 24 vCPUs, 192 GiB
+  - 镜像: pytorch_2.7.1-cann_8.5.2-py_3.12-hce_2.0.2512-aarch64-snt9b
+  - NPU: Ascend 910B4, 29.5GB 显存
+  - 存储: 200 GB EVS, 挂载 /home/ma-user/work/
+  - 价格: ~18.68 元/小时，用完及时停止
+
+【下一步：YOLOv8】
+- 用 PyTorch 训练 YOLOv8 → 迁移到 NPU 推理
+- 对比 GPU/NPU 性能
+- 涉及：torch_npu 适配、DVPP 预处理、ATC 模型转换、精度对齐
+
+【项目文件】
+workfile/ 目录（工作文件，云端版本）：
+  - resnet50_train_npu.ipynb  — ResNet-50 从零训练完整流程（含输出结果）
+  - 环境检查_modelarts.ipynb    — ModelArts 环境检查
+  - code_snippets.txt            — 代码片段暂存
+  - cifar-10-python.tar.gz       — CIFAR-10 数据集（162MB）
+
+根目录（早期文件）：
+  - 环境检查脚本.py             — NPU/系统/库版本检查
+  - env_test.ipynb               — 环境测试
+  - resnet50_npu.ipynb           — ResNet-50 推理（预训练，已废弃不用）
+  - 学习资源与参考.txt           — 硬件方案、资源汇总、报告结构
+  - 要求.txt                     — 用户原始需求文档
+  - 项目上下文.txt               — 本文件
+  - ResNet50_best.pth            — 用户本地的 ResNet 权重
+  - archive(5).rar               — 用户本地的数据集（待确认）
+
+【架构核心知识】
+NVIDIA GPU  ←→  达芬奇架构 (Ascend NPU)
+CUDA+cuDNN  ←→  CANN (异构计算架构)
+torch.cuda   ←→  torch_npu (PyTorch 适配 NPU 的插件)
+PyTorch      ←→  MindSpore (华为自研框架，原生适配昇腾)
+
+迁移核心: import torch_npu; device='npu:0'; .to('npu:0')
+NPU 异步执行，计时需 torch_npu.npu.synchronize()
+PyTorch 显示 cpu 版本是正常的，NPU 能力全由 torch_npu 提供
+
+【学习报告】
+边做边写，最终结构参考 学习资源与参考.txt 第三章。

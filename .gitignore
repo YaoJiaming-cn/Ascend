@@ -1,0 +1,28 @@
+# IDE
+.idea/
+
+# Model weights
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Datasets
+*.tar.gz
+*.zip
+coco128/
+data/
+datasets/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Output
+train_output/
+output.txt
+__pycache__/
+*.pyc
+
+# System
+.DS_Store
+Thumbs.db
